@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% load static %}
+
+<!-- tuber_details is a TuberProfile obj. to which we sent hirerequest -->
+<!-- hirerequest is a HireTubers obj it contains that sent form data  -->
+
+
+{% block content %}
+ 
+  <main class="Hire_request container">
+    {% include "messages.html" %}
+
+    <h1 class="text-center text-white col-10 col-md-4 mx-auto bg-accent mt-5 mb-5 rounded py-2" >
+      Hire_request
+    </h1>  
+    
+    <div class="row ">
+      {% comment %} <div class="col-md-6 ">
+        <img src="{% static './assets/images/login-image.png' %}" class="img-fluid" alt="img">
+      </div> {% endcomment %}
+
+      
+
+      <form method='POST' action="" class="col-md-10 offset-md-2  ">
+      {% csrf_token %}
+
+        <div class="row">
+                <div class="form-group input-group input-group col-md-5">
+                        <div class="input-group-prepend">
+                                <span class="input-group-text" id="">First name</span>
+                        </div>
+                        <input disabled type="text" name="firstname"   value='{{hirerequest.first_name}}' class="form-control" placeholder="First Name">
+                </div>
+                <div class="form-group input-group col-md-5 ">
+                        <div class="input-group-prepend">
+                                <span class="input-group-text" id="">Last name</span>
+                        </div>
+                        <input disabled type="text" name="lastname"  value='{{hirerequest.last_name}}' class="form-control" placeholder="Last Name">
+                </div>
+        </div>
+        <div class="row">
+                <div class="form-group input-group col-md-5 ">
+                        <div class="input-group-prepend">
+                                <span class="input-group-text" id="">Email</span>
+                        </div>
+                        <input disabled type="email" name="email"  disabled value='{{hirerequest.email}}' class="form-control" placeholder="Email Address" >
+                </div>
+                <div class="form-group input-group col-md-5 ">
+                        <div class="input-group-prepend">
+                                <span class="input-group-text" id="">Username</span>
+                        </div>
+                        <input disabled type="text" name="username" disabled value='{{user.username}}'class="form-control" placeholder="UserName" >
+                </div>
+                
+        </div>
+        <div class="row">
+                
+                
+                <div class="form-group input-group col-md-5 ">
+                        <div class="input-group-prepend">
+                                <span class="input-group-text" id="">City</span>
+                        </div>
+                        <input disabled type="text" name="city"  value='{{hirerequest.city}}' class="form-control" placeholder="City " >
+                </div>
+                <div class="form-group input-group col-md-5 ">
+                        <div class="input-group-prepend">
+                                <span class="input-group-text" id="">State</span>
+                        </div>
+                        <input disabled type="text" name="state"  value='{{hirerequest.state}}' class="form-control" placeholder="State" >
+                </div>
+        </div>
+        <div class="row"> 
+                                     
+                <div class="form-group input-group  col-md-5">  
+                        <div class="input-group-prepend">
+                                <span class="input-group-text" id="">Tuber Name</span>
+                        </div>        
+                        <input disabled type="text" name="tuber_name"  value='{{hirerequest.tuber_name}}' class="form-control" placeholder="Tuber name" >
+                </div>
+                <div class="form-group input-group col-md-5 ">
+                        <div class="input-group-prepend">
+                                <span class="input-group-text" id="">Tuber Email</span>
+                        </div>
+                        <input disabled type="email" name="email"  disabled value='{{tuber_details.user.email}}' class="form-control" placeholder="Tuber Email" >
+                </div>
+          </div>
+          <div class="row">
+                <div class="form-group input-group col-md-5 ">
+                        <div class="input-group-prepend">
+                                <span class="input-group-text" id=""> Tuber Username</span>
+                        </div>
+                        <input disabled type="text" name="tuber_username" disabled value='{{tuber_details.user.username}}'class="form-control" placeholder="UserName" >
+                </div>
+                <div class="form-group input-group col-md-5 ">
+                      <div class="input-group-prepend">
+                              <span class="input-group-text" id=""> Phone</span>
+                      </div>
+                      <input disabled type="number" name="phone" disabled value='{{hirerequest.phone}}'class="form-control" placeholder="User Phone" >
+                </div>
+
+       
+                <div class="form-group input-group col-md-10 ">
+                        <div class="input-group-prepend">
+                                <span class="input-group-text" id="">msg</span>
+                        </div>
+                       <textarea name="message" id="desc" cols="30" rows="8" aria-valuetext="message" class="form-control"  placeholder="message" > <strong>message</strong> <br>  {{ hirerequest.message | safe  }} </textarea>
+                </div>
+        </div>               
+             
+               
+          <div class=" offset-md-2 py-5">
+                <button  type="button"  class="btn btn-success my-3 m-md-3 col-md-3 py-3 font-weight-bold " id='accept' onclick='accept()' > Accept </button>
+                <button  type="button"  class="btn btn-accent mb-3  m-md-3 col-md-3 py-3 font-weight-bold  " id='reject'  onclick="reject('{{ hirerequest.id }}',event)" >Reject</button>
+          </div>
+      </form>
+    </div>
+  </main>
+
+  
+{% endblock %}
+
+{% block js %}
+<script>
+ function accept() {
+         console.log('saroj', a)
+         
+ }
+
+</script>
+
+  <!-- <script src= "{% static 'accounts/js/dashboard.js' %}"></script> -->
+ 
+  
+{% endblock js %}
+

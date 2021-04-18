@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+  <main class="single-page-tubers">
+    <div class="banner">
+      <img src= "{% static './assets/images/bg-banner.png' %} " alt="" class="img-fluid w-100">
+      <h1 class="text-center">
+        {{ youtuber.user.first_name }}
+      </h1>
+    </div>
+
+    {% include "messages.html" %}
+
+    <section class="head container mt-5 mb-5">
+      <div class="row">
+        <div class="col-md-4 d-flex justify-content-center align-items-center">
+          <h1 class="text-center">{{ youtuber.user.first_name }}</h1><br>
+          
+        </div>
+        <div class="col-md-4 d-flex justify-content-center align-items-center">
+          <h1 class="text-accent text-center">
+           $ {{ youtuber.price }}
+          </h1>
+        </div>
+        <div class="col-md-4 d-flex justify-content-center align-items-center">
+          <img src="{{ youtuber.user.profile_image.url }}" class="img-fluid" alt="team-member">
+        </div>
+      </div>
+    </section>
+
+    <section class="video container text-center">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/{{youtuber.video_url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </section>
+
+    <section class="descritpion container-fluid pt-5 mt-5">
+      <div class="row">
+          <h4 class="col-md-3 text-center px-3 py-3 bg-info">Description</h4>
+          <div class="col-md-8  mt-5 mb-5 offset-md-2 ">
+          {{ youtuber.description | safe  }} </div>
+      </div>
+    </section>
+    
+
+    <section class="container w-50">
+
+      <div class="person-description mt-2">
+        <button class="btn btn-accent"> {{ youtuber.city }} </button>
+        <button class="btn btn-accent"> {{ youtuber.age }} yr </button>
+        <button class="btn btn-accent"> {{ youtuber.height }} cm </button>
+      </div>
+      <div class="person-description mt-2">
+        <button class="btn btn-accent"> {{ youtuber.crew }} </button>
+        <button class="btn btn-accent"> {{ youtuber.camera_type }} </button>
+        <button class="btn btn-accent"> {{ youtuber.subs_count }}Subs </button>
+      </div>
+
+    </section>
+
+
+    <section class="youtuber-form container-fluid mt-5 mb-5">
+      <div class="row"> 
+        
+        <h4 class="col-md-3 px-2 text-center py-3 bg-info ">Send Hire Request</h4>  
+        <form method="POST" action={% url 'hiretuber' %} class="col-md-7 offset-md-3">
+          <!-- inputs which we want to available only for programmer and do not show to user -->
+          {% csrf_token %}
+         
+           {% if user.is_authenticated %}
+              <input type="hidden" name="user_id" value="{{user.id}}">        <!-- # user obj is availablable for all themplates if use logged in -->
+            {% else %}
+              <input type="hidden" name="user_id" value="000">
+           {% endif %}           
+           
+           <input type="hidden" name="tuber_id" value="{{youtuber.user_id}}">
+           <input type="hidden" name="tuber_name" value="{{youtuber.user.first_name}}"> 
+                    <!-- # tuberprofile obj is available -->
+          
+
+          <h3 class="pt-5 pb-5">Fill the Form and reach out or hire request</h3>
+          <div class="form-row">
+
+            <div class="form-group col-md-4 mb-3">
+              <input type="text" name="first_name" value='{{user.first_name}}' class="form-control" placeholder="First Name" required>
+            </div>
+
+            <div class="form-group col-md-4 mb-3">
+              <input type="text" name="last_name" value='{{user.last_name}}' class="form-control" placeholder="Last Name" required>
+            </div>
+            
+            <div class="form-group col-md-4 mb-3">
+              {% if user.is_authenticated %}
+                    <input type="email" name="email" value="{{user.email}}"  class="form-control" placeholder="Email">
+              {% else %}        
+                    <input type="email" name="email"  class="form-control" placeholder="Email" required>
+               {% endif %}
+            </div>
+
+          </div> 
+
+
+          <div class="form-group">
+            <select name="tuber_name" class="form-control">
+              <optgroup label='Select youtuber'>
+               <option type="text" selected value={{youtuber.user.first_name }} >{{youtuber.user.first_name}} </option>
+              </optgroup>
+            </select>
+          </div>
+         
+
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <input type="text"  name='city' class="form-control" placeholder="Event City" required>
+            </div>
+            <div class="form-group col-md-4">
+              <input type="text" name='state' class="form-control" placeholder="Event State" required>
+            </div>
+            <div class="form-group col-md-4">
+              <input type="number" name='phone' class="form-control" placeholder="Your Phone Number" required>
+            </div>
+
+          </div>
+
+          <div class="form-group pt-2">
+            <textarea class="form-control" name="message" rows="3" placeholder="Details Message" required></textarea>
+          </div>
+
+          <div class="text-center">
+            <button type="submit" class="btn btn-accent mt-5">Sent Hire Req</button>
+          </div>
+
+        </form>
+      </div>
+
+    </section>
+
+    <section class="announcement container-fluid mt-5 mb-5 pt-2">
+        <div class="row">
+              <h4 class="col-md-3 px-2 text-center py-3 bg-info ">Announcement</h4>
+              <div class="col-md-8 mt-5 mb-5 offset-md-2 ">
+                    {{ youtuber.announcement | safe  }}
+              </div>
+        </div>
+    
+    </section>
+
+  </main>
+
+{% endblock content %}

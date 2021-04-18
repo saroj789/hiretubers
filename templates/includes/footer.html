@@ -1,0 +1,44 @@
+<footer>
+    <div class="bg-accent mt-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6 text-lg-left text-center">
+            <h4>
+              Reach out to hire YTubers
+            </h4>
+          </div>
+
+          <div class="col-sm-6 text-lg-right text-center">
+              <a href={% url 'contact' %} class="btn btn-light">              {% comment %}   # now change href 'contact' to url 'contact b/z' when url will be changed and then we click conatct then it will be localhost/accounts/contact while we need only localhost/contact {% endcomment %}
+              Contact Us
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 text-lg-left text-center">
+          <h5>
+            2020 YTubers for Hire
+          </h5>
+        </div>
+        <div class="col-md-4 text-lg-center text-center">
+          <h5>
+            All Rights Reserved
+          </h5>
+        </div>
+        <div class="col-md-4 text-lg-right text-center">
+          <div>
+        
+            <a href='{{contactinfo.footer_fb_link }}' class="btn btn-accent"> <i class="fab fa-facebook-f fa-lg	"></i> </a>
+            <a href='{{contactinfo.footer_insta_link }}' class="btn btn-accent"> <i class="fab fa-instagram fa-lg	"></i> </a>
+            <a href='{{contactinfo.footer_twitter_link }}' class="btn btn-accent"> <i class="fab fa-twitter fa-lg	"></i> </a>
+            <a href='{{contactinfo.footer_youtube_link }}' class="btn btn-accent"> <i class="fab fa-youtube fa-lg	"></i> </a>
+    
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </footer>

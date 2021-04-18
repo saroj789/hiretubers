@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<main class="tubers-page">
+    <div class="banner">
+       {% include "messages.html" %}
+      <img src="{% static './assets/images/bg-banner.png' %}" alt="" class="img-fluid w-100">
+      <h1 class="text-center">
+        Tubers
+      </h1>
+    </div>         
+        
+    <section class="searchbox container mt-5 p-3 bg-dark">
+
+      <form action="{% url 'youtubers' %}" method='GET'>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+
+            <select  name='city' id="inputState" class="form-control">
+              <option selected disabled hidden>City</option>
+             {% for city in city_search %}
+                <option value="{{ city }}">  {{ city }} </option>
+             {% endfor %}
+              
+            </select>
+
+          </div>
+
+          <div class="form-group col-md-4">
+
+            <select name='camera_type' id="inputState" class="form-control">
+              <option selected disabled hidden>Camera Type</option>
+              {% for camera in camera_type_search %}
+                <option value='{{ camera }}'>  {{ camera }} </option>
+             {% endfor %}
+            </select>
+
+          </div>
+          <div class="form-group col-md-4">
+
+            <select name='category' class="form-control">
+              <option selected disabled hidden>Category</option>
+              {% for category in category_search %}
+                <option value='{{ category }}'>  {{ category }} </option>
+             {% endfor %}
+            </select>
+
+          </div>
+        </div>
+        
+        <div class="text-center">
+            <button  class="btn btn-danger">Search</button>
+        </div>
+
+      </form>
+      
+    </section>
+
+    <section class="container mt-5 mb-5">
+      <div class="row ">
+        
+          <section class=" search-results container mt-3 grid">
+
+            <!-- person 1 -->
+           {% for yt in youtubers %}
+            
+            <div class="card border-0 text-center">
+              <div class="feature-text">
+               <a href= {% url 'youtubers_detail' yt.user_id %}>
+                <img src="{{ yt.user.profile_image.url }}" class="card-img-top" alt="team-member">
+               </a>
+                 {% if yt.is_featured %}
+                    <span class="text-left bg-accent font-weight-bold">
+                        Featured
+                    </span> 
+                 {% endif %}
+              </div>
+              
+              <div class="card-body">
+                <h5 class="card-title">{{ yt.user.first_name }}</h5>
+                <p class="card-text">{{ yt.category }}</p>
+                <div class="person-description mt-2">
+                  <button class="btn btn-accent"> {{ yt.city }} </button>
+                  <button class="btn btn-accent"> {{ yt.age }} </button>
+                  <button class="btn btn-accent"> {{ yt.height }} </button>
+                </div>
+                <div class="person-description mt-2">
+                  <button class="btn btn-accent"> {{ yt.crew }} </button>
+                  <button class="btn btn-accent"> {{ yt.camera_type }} </button>
+                  <button class="btn btn-accent"> {{ yt.subs_count }}  </button>
+                </div>
+              </div>
+            </div>
+          
+           {% endfor %}
+
+          </section>
+   
+        
+      </div>
+    </section>
+
+
+
+
+    <div class="container section pagination-section mt-3">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+          <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </main>
+
+{% endblock content %}

@@ -1,0 +1,253 @@
+<div class="col-md-8 mx-auto">
+  {% include "messages.html" %}
+</div>
+
+
+<div class="container profile_data mt-md-5">
+  <form method='POST' action="{% url 'profile' %}" class="" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+
+    <div class="row gutters">
+
+        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 col-12 ">
+          <div class="card  pt-3 h-100" style="width: 100%;">
+            <div class="card-body">
+              <div class="account-settings">
+                    <div class="user-profile">
+                      <div class="user-avatar" >
+                        <img src='{{user.profile_image.url}}' alt="Maxwell Admin" class="image-responsive"   >   
+                          <div class="form-group w-50 mx-auto">
+                            <input type="file" accept="image/*" class="form-control" id='profile_image' name="profile_image" id="profile_image" label="change photo"  > 
+                          </div>                                     
+                      </div>
+                      <h5 class="user-name">{{user.username}}</h5>
+                      <h6 class="user-email">{{user.email}}</h6>
+                    </div>
+                    {% comment %} <div class="about">
+                      <h5 class="mb-2 text-primary"> About</h5>  
+                      <p> tuber.about I'm Yuki. Full Stack Designer I enjoy creating user-centric, delightful and human experiences.</p>
+                      
+                    </div> {% endcomment %}
+
+                    
+
+                      {% comment %} extra nav {% endcomment %}
+                    <div class="menu-bar mt-5 d-none d-md-block">
+                        <ul class="nav flex-column">
+                            <li class="nav-item active">
+                              <a class="nav-link active" href="#">Account</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link disabled" href="#">About</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link disabled"  href="#">Recent</a>
+                            </li>
+                            <li class="nav-item disabled">
+                              <a class="nav-link disabled" href="#">Services</a>
+                            </li>
+                            <li class="nav-item disabled">
+                              <a class="nav-link disabled" href="#">Social IDs</a>
+                            </li>
+                            <li class="nav-item disabled">
+                              <a class="nav-link disabled" href="#">Setting</a>
+                            </li>
+                      </ul>
+                    </div>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-9 col-lg-9 col-md-8 col-sm-12 col-12">
+          <div class="card  h-100" style="width:100%;" >
+            <div class="card-body">
+              <div class="row gutters">
+
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center">
+                  <h6 class="mb-4 h3 text-primary">Personal Details</h6>
+                </div>
+
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                  <div class="form-group">
+                    <label for="firstname">First Name</label>
+                    <input type="text" id='firstname' name="firstname"  required value='{{user.first_name}}' class="form-control" placeholder="First Name">
+                  </div>
+                </div>
+
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                  <div class="form-group">
+                    <label for="lastname">Last Name</label>
+                    <input type="text" name="lastname" id='lastname' required value='{{user.last_name}}' class="form-control" placeholder="First Name">
+                  </div>
+                </div>
+
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                  <div class="form-group ">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" class="form-control " id="email" value='{{user.email}}' disabled required placeholder="Enter email ID">
+                  </div>
+                </div>
+
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                  <div class="form-group">
+                    <label for="username">UserName</label>
+                    <input type="text" name="username" id='username' required value='{{user.username}}' disabled class="form-control" placeholder="Username">
+                  </div>
+                </div>
+
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                  <div class="form-group">
+                    <label for="is_tuber">Is Tuber</label>
+                    <select class="form-control" id='is_tuber' disabled name="is_tuber" required>
+                            <optgroup label="is_tuber">
+                                    <option value='{{user.is_tuber}}'  hidden selected> {{user.is_tuber}}</option>
+                                    <option  >True</option>
+                                    <option >False</option>
+                                   
+                            </optgroup>
+                    </select>
+                  </div>
+                </div>
+
+
+              </div>
+
+                        {% if user.is_tuber  %}
+                                      
+              <div class="row gutters">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                  <h6 class="mb-3 text-primary">Address</h6>
+                </div>
+
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                  <div class="form-group">
+                    <label for="video_id">Street</label>
+                     <input type="text" name="video_id" id='video_id' value='{{tuber.video_url}}' class="form-control" placeholder="Video ID " required >
+                  </div>
+                </div>
+
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                  <div class="form-group">
+                    <label for="city">City</label>
+                    <input type="text" name="city" id='city' value='{{tuber.city}}' class="form-control" placeholder="City " required>
+                  </div>
+                </div>
+
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                  <div class="form-group">
+                    <label for="crew">Crew</label>
+                    <select class="form-control crew" required name="crew" id='crew'>
+                            <optgroup label="Crew">
+                                <option value='{{tuber.crew}}' selected>  {{tuber.crew}}</option>
+
+                                {% for crew  in tuber.crew_choices_for_tuber  %}
+                                      <option value='{{crew}}'> {{crew }}   </option>
+                                {% endfor %}                   
+                             </optgroup>
+                         
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                  <div class="form-group">
+                    <label for="zIp">Totac Subscriber</label>
+                    <input type="number" step="100" name="subs_count" id='subs_count'  value='{{tuber.subs_count}}' class="form-control" placeholder="No of Subscriber" required >
+                  </div>
+                </div>
+
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                  <div class="form-group">
+                    <label for="camera_type">Camera Type</label>
+                    <select name="camera_type" id="camera_type" class='form-control'>
+                        <optgroup label="camera type">
+                            <option value='{{tuber.camera_type }}' selected> {{tuber.camera_type }}   </option>
+
+                            {% for choice  in tuber.camera_types_for_tuber  %}
+                                <option value='{{choice}}'> {{choice  }}   </option>
+                            {% endfor %}
+
+                        </optgroup>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                  <div class="form-group">
+                    <label for="height">Height</label>
+                    <input type="number" step="2" name="height" id='height'  value='{{tuber.height}}' class="form-control" placeholder="Height" required >
+                  </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                  <div class="form-group">
+                    <label for="price">Price</label>
+                    <input type="number" step="5" name="price" id='price' value='{{tuber.price}}' class="form-control" placeholder="price" required >
+                  </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                  <div class="form-group">
+                    <label for="age">Age</label>
+                    <input type="number"  name="age" id='age'  value='{{tuber.age}}' class="form-control" placeholder="Age" required >
+                  </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                  <div class="form-group">
+                    <label for="category">Category</label>
+                    <select name="category" id="category" class='form-control'>
+                        <optgroup label="category ">
+                            <option value='{{tuber.category}}' selected> {{ tuber.category }}   </option>
+                            {% for category  in tuber.categories_for_tuber %}                           
+                                <option value='{{category}}'> {{ category }}   </option>
+                            {% endfor %}
+
+                        </optgroup>
+                    </select>
+                  </div>
+                  
+                </div>
+
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                 
+                </div>
+
+                
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                  <div class="form-group">
+                    <label for="desc">Description</label>
+                    <textarea name="description" id="desc" cols="30" rows="8" aria-valuetext="Description" class="form-control"  placeholder="Description"  required>   {{ tuber.description | safe  }} </textarea>
+                  </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                  <div class="form-group">
+                    <label for="announcement">Announcement</label>
+                    <textarea name="announcement" id="announcement" cols="30" rows="8" aria-valuetext="Announcement" class="form-control"  placeholder="Announcement" required >  {{ tuber.announcement | safe  }} </textarea>
+                  </div>
+                </div>
+
+              </div>
+
+                          {% endif %} 
+
+              <div class="row gutters"  >
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 col ">
+                  <div class="text-right ">
+                    <button type="reset" id="submit" name="submit" class="btn btn-secondary">Reset</button>
+                    <button type="submit" id="submit" name="submit" class="btn btn-primary">Update</button>
+                  </div>
+                </div>
+              </div>
+                        
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </form>
+
+
+</div>

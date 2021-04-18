@@ -1,0 +1,74 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+
+
+
+
+{% block content %}
+ {% load socialaccount %}
+ {% comment %} <!-- <a href="{% provider_login_url "facebook" method="oauth2" %}">Facebook OAuth2</a> --> {% endcomment %}
+  <main class="login container">
+    {% include "messages.html" %}   
+
+    <h1 class="text-center mt-5 mb-1 animate__animated animate__slideInDown">
+      Login
+    </h1>
+
+      
+    <div class="row">
+      <div class="col-md-6 ">
+        <img src="{% static './assets/images/login-image.png' %}" class="img-fluid" alt="img">
+      </div>
+  
+      <form  method='POST' action="{% url 'login' %}" class="col-md-5 offset-1">
+      {% csrf_token %}
+        {% comment %} <div class="form-group">
+          <input type="text" name='username' class="form-control" placeholder="User Name">
+        </div> {% endcomment %}
+
+        {% comment %} <div class="form-group  ">
+          <select name="is_tuber"class = 'form-control bg-danger text-white' required>
+            <!-- <option selected disabled hidden>Category</option> -->
+            <option class="bg-secondary" value=0>customer</option>
+            <option value=1 >Tuber</option>
+          </select>
+          
+        </div> {% endcomment %}
+        {% include "accounts/include/usertype.html" %}
+        <div class="form-group">
+          <input type="email" name='email' class="form-control" placeholder="email" required>
+        </div>
+
+        <div class="form-group">
+          <input type="password" name='password' class="form-control" placeholder="Password" required>
+        </div>
+
+
+        <button type="submit" class="btn btn-accent form-btn w-100 mt-3 mb-3">Signin</button>
+        <div class="text-center">
+          OR
+        </div>
+        
+        <a href="{% provider_login_url 'facebook' method='oauth2' %}"  class="btn btn-primary form-btn w-100 mt-3">Facebook </a>
+        {% comment %} <a href='{% provider_login_url "facebook" method="oauth2" %}' class="btn btn-primary form-btn w-100 mt-3">Facebook</a> {% endcomment %}
+        {% comment %} <button class="btn btn-accent form-btn w-100 mt-3 mb-3">Google</button> {% endcomment %}
+        <a href="{% provider_login_url 'google'  %}" class="btn btn-accent form-btn w-100 mt-3 mb-3 " > Google</a>
+
+      </form>
+    </div>
+  </main>
+  
+  
+
+{% endblock content %}
+
+
+{% block css %}     
+  <link rel="stylesheet" href="{% static 'accounts/css/usertype.css' %}" > 
+{% endblock css %}
+
+{% block js %} 
+  <script src= "{% static 'accounts/js/usertype.js' %}"></script> 
+{% endblock js %}

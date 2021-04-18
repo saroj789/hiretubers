@@ -1,0 +1,17 @@
+
+     
+     .usertype .btn{
+        background-color:gray;
+
+      }
+      .usertype .btn:active
+      {
+      background-color:yellow;
+      }
+
+      .usertype .btn.active
+      {
+      color: white;
+      background-color:rgb(25, 0, 255);
+      }
+     
