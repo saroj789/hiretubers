@@ -4,28 +4,17 @@
 
  {% block css %}
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-  <link rel="stylesheet" href={% static 'accounts/css/cprofile.css' %} >
+  <link rel="stylesheet" href={% static 'accounts/css/profileform.css' %} >
 {% endblock css %}
 
 {% block content %}
 
-       {% comment %} <div class="col-md-8 mx-auto">
-                {% include "messages.html" %}
-        </div> {% endcomment %}
-
-  {% comment %} {% if user.is_tuber %}
-
-                {% include "accounts/include/tuberprofile.html" %}
-  {% else %}
-                {% include "accounts/include/userprofile.html" %}
-  {% endif %} 
- {% endcomment %}
-
-
-{% include "accounts/include/cprofile.html" %}
-
-
-
+    {% include "accounts/include/cprofile.html" %}
 
 {% endblock %}
+
+{% block js %}
+<script src={% static 'accounts/js/profileform.js' %}></script>
+
+{% endblock js %} 
 

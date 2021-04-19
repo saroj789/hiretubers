@@ -9,7 +9,7 @@
     {% include "messages.html" %}
 
     <h1 class="text-center mt-5 mb-3">
-      Register
+      REGISTER
     </h1>  
     
     <div class="row">
@@ -22,14 +22,6 @@
       <form method='POST' action="{% url 'register' %}" class="col-md-5 offset-md-1">
       {% csrf_token %}
 
-        {% comment %} <div class="form-group ">
-            
-          <select name="is_tuber"class = 'form-control bg-danger text-white' required>
-            <!-- <option selected disabled hidden>Category</option> -->
-            <option class="bg-secondary" value=0>customer</option>
-            <option value=1 >Tuber</option>
-          </select>
-        </div> {% endcomment %}
 
         {% include "accounts/include/usertype.html" %}
 

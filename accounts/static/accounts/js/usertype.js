@@ -16,4 +16,4 @@
             $('.usertype  > input').val($(this).val())
 
       });
-
+      

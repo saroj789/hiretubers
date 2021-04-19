@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Slider,Team,About
-from youtubers.models import Youtubers
+
 from contactinfo.models import Contactinfo
 from accounts.models import Account,TuberProfile
 
@@ -18,6 +18,10 @@ def home(request):
 
     #all_tubers=Youtubers.objects.order_by('-created_date')
     all_tubers=TuberProfile.objects.order_by('-updated_date')
+    try:
+        all_tubers=all_tubers[0:6]
+    except:
+        pass
     data['all_tubers']=all_tubers 
 
     #featured_youtubers = Youtubers.objects.order_by('-created_date').filter(is_featured=True)

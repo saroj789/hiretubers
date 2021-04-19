@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Youtubers
+
 from django.shortcuts import get_object_or_404
 from accounts.models import Account,TuberProfile
 
@@ -50,6 +50,7 @@ def searchbox(request,youtubers):
 
 def youtubers(request):
     youtubers=TuberProfile.objects.order_by('-updated_date')
+   
 
     # data={
     #     'youtubers': youtubers
