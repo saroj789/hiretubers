@@ -1,0 +1,21 @@
+.dashboard{
+    text-align: center;
+}
+
+@media screen and (max-width:480px){
+   
+    .dashboard .city{
+        display: none;
+    }
+
+
+}
+@media screen and (min-width:480px){
+   
+    .dashboard .city{
+        display: flex;
+    }
+
+
+}
+

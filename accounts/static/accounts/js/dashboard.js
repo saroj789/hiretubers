@@ -67,3 +67,23 @@ function reject(hire_id,event){
     ajaxreq.send(hire_id,row)
 
 }
+
+
+
+// let tr=$('.dashboard tr')
+// for (let index = 0; index < tr.length; index++) {
+//     const element = tr[index].children[2];
+//     element.innerHTML=''
+// }
+
+
+// let tr2=$('.dashboard tbody tr a ')
+
+// console.log(tr2)
+// for (let index = 0; index < tr2.length; index++) {
+//     const element = tr2[index]
+//     console.log(element.innerText='page')
+// }
+
+
+

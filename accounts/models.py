@@ -190,6 +190,8 @@ class TuberProfile(models.Model):
     def __str__(self):
         return self.user.first_name
 
+
+
     camera_types_for_tuber = ['canon','nicon','sony','red','fuji','panasonic','other']
     crew_choices_for_tuber=[
         'solo',

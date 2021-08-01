@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block css %}
+
+  <link href= {% static 'accounts/css/dashboard.css' %} rel='stylesheet'>
+
+{% endblock css %}
+
 {% block content %}
    {% comment %} <h1> abc  {{ hiretubers }}  </h1> {% endcomment %}
    
@@ -35,9 +41,9 @@
                         <tr >
                           <th scope="col">#</th>
                           <th scope="col">Sender </th>
-                          <!-- <th scope="col">Email</th> -->
-                          <th scope="col">City</th>             
-                          <th scope="col">Visit</th>
+                          
+                          <th scope="col" class='city' >City</th>             
+                          <th scope="col" >Visit</th>
                           <th scope="col">Respond</th>
                           <th scope="col">Status</th>
                           
@@ -49,9 +55,9 @@
                                 <th scope="row">{{ forloop.counter }}</th>
                                 <td>{{hirerequest.first_name}}</td>
                                 <!-- <td>{{hirerequest.email}}</td> -->
-                                <td>{{hirerequest.city}}</td>
+                                <td class='city' >{{hirerequest.city}}</td>
                                 <td>
-                                    <a href={% url 'received_hirerequest' hirerequest.id %}>  <div class="btn btn-accent">Go to Page </div> </a>
+                                    <a href={% url 'received_hirerequest' hirerequest.id %}>  <div class="btn btn-accent visit"><span >Go to </span> Page </div> </a>
                                 </td>
                                 <td>
                                   <div class="btn btn-success " id='accept' onclick='accept( "{{hirerequest.id}}",event )' >Accept </div>
@@ -78,7 +84,7 @@
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Tuber</th>
-                  <th scope="col">City</th>
+                  <th scope="col" class='city'>City</th>
                   <th scope="col">Visit</th>
                   <th scope="col">Cancel</th>
                   <th scope="col">Status</th>
@@ -89,10 +95,10 @@
                       <tr>
                         <th scope="row">{{ forloop.counter }}</th>
                         <td>{{hirerequest.tuber_name}}</td>
-                        <td>{{hirerequest.city}}</td>
+                        <td class='city'> {{hirerequest.city}}</td>
                         
                         <td>
-                          <a href={% url 'sent_hirerequest' hirerequest.id %} ><div class="btn btn-accent"> Go to Page </div></a>
+                          <a href={% url 'sent_hirerequest' hirerequest.id %} ><div class="btn btn-accent visit"><span> Go to <span>Page </div></a>
                         </td>
                         <td>   
                               

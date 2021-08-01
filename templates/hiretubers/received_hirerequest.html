@@ -103,15 +103,15 @@
                         <div class="input-group-prepend">
                                 <span class="input-group-text" id="">msg</span>
                         </div>
-                       <textarea name="message" id="desc" cols="30" rows="8" aria-valuetext="message" class="form-control"  placeholder="message" > <strong>message</strong> <br>  {{ hirerequest.message | safe  }} </textarea>
+                       <textarea name="message" disabled id="desc" cols="30" rows="8" aria-valuetext="message" class="form-control"  placeholder="message" > <strong>message</strong> <br>  {{ hirerequest.message | safe  }} </textarea>
                 </div>
         </div>               
              
                
-          <div class=" offset-md-2 py-5">
+          {% comment %} <div class=" offset-md-2 py-5">
                 <button  type="button"  class="btn btn-success my-3 m-md-3 col-md-3 py-3 font-weight-bold " id='accept' onclick='accept()' > Accept </button>
                 <button  type="button"  class="btn btn-accent mb-3  m-md-3 col-md-3 py-3 font-weight-bold  " id='reject'  onclick="reject('{{ hirerequest.id }}',event)" >Reject</button>
-          </div>
+          </div> {% endcomment %}
       </form>
     </div>
   </main>

@@ -55,7 +55,7 @@
         <div class="card border-0 text-center ml-3 mr-3">
           <div class="feature-text">
            <a href= {% url 'youtubers_detail' fy.user_id %}>
-                <img src="{{ fy.user.profile_image.url }}" class="card-img-top" alt="team-member">
+                <img src="{{ fy.user.profile_image.url }}" class="card-img-top" alt="{{ fy.user.first_name }}">
             </a>
             <span class="text-left bg-accent font-weight-bold">
               Featured
@@ -105,7 +105,7 @@
         <div class="card border-0 text-center " >
           <div>
             <a href= {% url 'youtubers_detail' ytuber.user_id %}>
-                <img src="{{ ytuber.user.profile_image.url }}" class="card-img-top"  alt="Ytuber">
+                <img src="{{ ytuber.user.profile_image.url }}" class="card-img-top"  alt="{{ ytuber.user.first_name }}">
             </a>
           </div>
           <div class="card-body">
